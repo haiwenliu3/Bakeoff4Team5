@@ -100,6 +100,42 @@ void draw() {
   rectMode(CORNER);
   stroke(0);
   textFont(font, 100);
+  
+  if (chooseStage == 2) // PUT THE UI FOR CHOOSE 2 STAGE HERE 
+  {
+    String[] options2={"One", "Two"};
+    int t = targets.get(index).action;
+    textFont(font, 100);
+    fill(0);
+    stroke(0);
+    text("Target: "+options2[t], width*.03 , height*.1);
+    text("Trial: "+(index+1)+"/"+trialCount, width*.03 , height*.2);
+    
+    if (t == 0) {
+      fill(50, 250, 70);
+      rect(0,0,width/2, height);
+      fill(0);
+      rect(width/2, 0, width, height);
+      fill(255);
+      text("ONE", width/4, height/2);
+      text("TWO", 3*width/4, height/2);
+      
+    } else {
+      fill(0);
+      rect(0,0,width/2, height);
+      fill(50, 250, 70);
+      rect(width/2, 0, width, height);
+      fill(255);
+      text("ONE", width/4, height/2);
+      text("TWO", 3*width/4, height/2);
+    }
+    
+    line(width/2,0,width/2,height);
+
+    delay(4000);
+    checkNext2(true);
+  }
+  
   if (cam.isStarted() && chooseStage == 4 && !debug)
   {
     currentColor = getColor();
@@ -131,35 +167,6 @@ void draw() {
         getConfirmed();
       }
       drawDebug();
-  }
-  
-  
-  if (chooseStage == 2) // PUT THE UI FOR CHOOSE 2 STAGE HERE 
-  {
-    String[] options2={"One", "Two"};
-    int t = targets.get(index).action;
-    textFont(font, 100);
-    fill(0);
-    stroke(0);
-    text("Target: "+options2[t], width*.03 , height*.1);
-    text("Trial: "+(index+1)+"/"+trialCount, width*.03 , height*.2);
-    
-    if (t == 0) {
-      
-    } else {
-      fill(50, 250, 70);
-      rect(0,0,width/2, height);
-      fill(0);
-      rect(width/2, 0, width, height);
-      fill(255);
-      text("ONE", width/4, height/2);
-      text("TWO", 3*width/4, height/2);
-    }
-    
-    line(width/2,0,width/2,height);
-
-    delay(4000);
-    checkNext2(true);
   }
   
 }
