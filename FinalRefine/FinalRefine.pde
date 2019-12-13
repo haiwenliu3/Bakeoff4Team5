@@ -137,8 +137,8 @@ void draw() {
     textFont(font, 100);
     fill(0);
     stroke(0);
-    text("Target: "+(targets.get(index).target+1), width*.03 , height*.1);
-    text("Trial: "+(index+1)+"/"+trialCount, width*.03 , height*.2);
+    text("Target: "+(targets.get(index).target+1), width*.03 + height/10, height*.1 + height/10);
+    text("Trial: "+(index+1)+"/"+trialCount, width*.03 + height/10 , height*.2 + height/10);
     
     if (confirmedDirection > 0) {
       checkNextTrial4();
@@ -357,7 +357,7 @@ void drawBorders(int choose) {
   if (choose == 1)
   {
     fill(0);
-    rect(9*width/10,0, width, height);
+    rect(width-height/10,0, width, height);
     fill(0);
     rect(0,9*height/10, width, height);
     fill(0);
@@ -375,7 +375,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,0, width/10, height);
     fill(50, 250, 70);
-    rect(9*width/10,0, width, height);
+    rect(width-height/10,0, width, height);
   }
   //bottom
     if (choose == 3)
@@ -383,11 +383,11 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,0, width, height/10);
     fill(0);
-    rect(9*width/10,0, width, height);
+    rect(width-height/10,0, width, height);
     fill(0);
     rect(0,0, width/10, height);
     fill(50, 250, 70);
-    rect(0,9*height/10, width, height);
+    rect(0,9*height/10, width, height);width-height/10
   }
   //left
     if (choose == 4)
@@ -395,7 +395,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,0, width, height/10);
     fill(0);
-    rect(9*width/10,0, width, height);
+    rect(width-height/10,0, width, height);
     fill(0);
     rect(0,9*height/10, width, height);
     fill(50, 250, 70);
