@@ -355,7 +355,7 @@ void drawArrows(int choose)
   stroke(51);
   if (choose == 1)
   {
-    fill(100);
+    fill(50, 250, 70);
     arrow(width/2, height/2 - 450, 300, 0);
     fill(0);
     arrow(width/2 + 700, height/2, 400, 1.5708);
@@ -368,7 +368,7 @@ void drawArrows(int choose)
   {
     fill(0);
     arrow(width/2, height/2 - 450, 300, 0);
-    fill(100);
+    fill(50, 250, 70);
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(0);
     arrow(width/2, height/2 + 450, 300, 3.14159);
@@ -381,7 +381,7 @@ void drawArrows(int choose)
     arrow(width/2, height/2 - 450, 300, 0);
     fill(0);
     arrow(width/2 + 700, height/2, 400, 1.5708);
-    fill(100);
+    fill(50, 250, 70);
     arrow(width/2, height/2 + 450, 300, 3.14159);
     fill(0);
     arrow(width/2 - 700, height/2, 400, 4.71239);
@@ -394,7 +394,7 @@ void drawArrows(int choose)
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(0);
     arrow(width/2, height/2 + 450, 300, 3.14159);
-    fill(100);
+    fill(50, 250, 70);
     arrow(width/2 - 700, height/2, 400, 4.71239);
   }
 }
@@ -411,11 +411,11 @@ void arrow(final int aHeadX, final int aHeadY, final int aSize, final float aAng
     rect(0.0-sizeFac/2.0, sizeFac/2.0, sizeFac, float(aSize)); //center
     pushMatrix(); //make rotate independent to other lines
       rotate(radians(-45.0));
-      rect(0.0-sizeFac, 0.0, sizeFac, float(aSize)/2.0); //right
+      rect(0.0-sizeFac, 0.0, sizeFac, float(aSize)); //right
     popMatrix();
     pushMatrix();
       rotate(radians(45.0));
-      rect(0.0, 0.0, sizeFac, float(aSize)/2.0); //left
+      rect(0.0, 0.0, sizeFac, float(aSize)); //left
     popMatrix();
   popMatrix();
 }//void arrow(.) END
