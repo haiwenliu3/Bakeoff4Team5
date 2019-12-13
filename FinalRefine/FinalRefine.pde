@@ -246,10 +246,11 @@ void resetConfirmed()
 //tilting stuff-----------------------------------------------
 
 void tilting(int choose){
-  background(78, 93, 75);
-  fill(204, 102, 0);
-  rect(0,0, width, height/2);
-    
+  //background(78, 93, 75);
+  //fill(204, 102, 0);
+  //rect(0,0, width, height/2);
+  
+  background(204, 102, 0);  
   drawArrows(choose);
 
   //if (tiltingMode) { // determines using prox
@@ -356,44 +357,44 @@ void drawArrows(int choose)
   if (choose == 1)
   {
     fill(50, 250, 70);
-    arrow(width/2, height/2 - 450, 300, 0);
+    arrow(width/2, height/2 - 450, 400, 0);
     fill(0);
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(0);
-    arrow(width/2, height/2 + 450, 300, 3.14159);
+    arrow(width/2, height/2 + 450, 400, 3.14159);
     fill(0);
     arrow(width/2 - 700, height/2, 400, 4.71239);
   }
     if (choose == 2)
   {
     fill(0);
-    arrow(width/2, height/2 - 450, 300, 0);
+    arrow(width/2, height/2 - 450, 400, 0);
     fill(50, 250, 70);
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(0);
-    arrow(width/2, height/2 + 450, 300, 3.14159);
+    arrow(width/2, height/2 + 450, 400, 3.14159);
     fill(0);
     arrow(width/2 - 700, height/2, 400, 4.71239);
   }
     if (choose == 3)
   {
     fill(0);
-    arrow(width/2, height/2 - 450, 300, 0);
+    arrow(width/2, height/2 - 450, 400, 0);
     fill(0);
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(50, 250, 70);
-    arrow(width/2, height/2 + 450, 300, 3.14159);
+    arrow(width/2, height/2 + 450, 400, 3.14159);
     fill(0);
     arrow(width/2 - 700, height/2, 400, 4.71239);
   }
     if (choose == 4)
   {
     fill(0);
-    arrow(width/2, height/2 - 450, 300, 0);
+    arrow(width/2, height/2 - 450, 400, 0);
     fill(0);
     arrow(width/2 + 700, height/2, 400, 1.5708);
     fill(0);
-    arrow(width/2, height/2 + 450, 300, 3.14159);
+    arrow(width/2, height/2 + 450, 400, 3.14159);
     fill(50, 250, 70);
     arrow(width/2 - 700, height/2, 400, 4.71239);
   }
@@ -411,11 +412,11 @@ void arrow(final int aHeadX, final int aHeadY, final int aSize, final float aAng
     rect(0.0-sizeFac/2.0, sizeFac/2.0, sizeFac, float(aSize)); //center
     pushMatrix(); //make rotate independent to other lines
       rotate(radians(-45.0));
-      rect(0.0-sizeFac, 0.0, sizeFac, float(aSize)); //right
+      rect(0.0-sizeFac, 0.0, sizeFac, float(aSize)/2.0); //right
     popMatrix();
     pushMatrix();
       rotate(radians(45.0));
-      rect(0.0, 0.0, sizeFac, float(aSize)); //left
+      rect(0.0, 0.0, sizeFac, float(aSize)/2.0); //left
     popMatrix();
   popMatrix();
 }//void arrow(.) END
