@@ -45,6 +45,8 @@ int countDownTimerWait = 0;
 
 boolean firstStageCorrect = false;
 
+int countDelay = 0;
+
 void setup() {
   size(2280,1080); // CHANGE THIS TO PHONE RESOLUTION    size(longer,shorter)    for landscape
   frameRate(30);
@@ -132,8 +134,11 @@ void draw() {
     
     line(width/2,0,width/2,height);
 
-    delay(4000);
-    checkNext2(true);
+    //delay(4000);
+    //checkNext2(true);
+    countDelay++;
+    if (countDelay > 30)
+      checkNext2(true);
   }
   
   if (cam.isStarted() && chooseStage == 4 && !debug)
@@ -253,6 +258,7 @@ void checkNextTrial4()
   }
   resetConfimred();
   chooseStage = 2;
+  countDelay = 0;
 }
 
 void getConfirmed()

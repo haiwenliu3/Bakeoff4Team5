@@ -361,7 +361,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(0);
-    rect(0,0, height/10, height);
+    rect(0,0, width/10, height);
     fill(50, 250, 70);
     rect(0,0, width, height/10);
   }
@@ -373,7 +373,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(0);
-    rect(0,0, height/10, height);
+    rect(0,0, width/10, height);
     fill(50, 250, 70);
     rect(width-height/10,0, width, height);
   }
@@ -385,7 +385,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(width-height/10,0, width, height);
     fill(0);
-    rect(0,0, height/10, height);
+    rect(0,0, width/10, height);
     fill(50, 250, 70);
     rect(0,9*height/10, width, height);
   }
@@ -399,7 +399,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(50, 250, 70);
-    rect(0,0, height/10, height);
+    rect(0,0, width/10, height);
   }  
 }
 
