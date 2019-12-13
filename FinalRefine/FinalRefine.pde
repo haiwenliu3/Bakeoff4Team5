@@ -252,6 +252,7 @@ void tilting(int choose){
   
   background(204, 102, 0);  
   drawArrows(choose);
+  drawBorders(choose);
 
   //if (tiltingMode) { // determines using prox
    if (true) {
@@ -350,6 +351,57 @@ int getYOrientation() {
   return rotationX < -0.25 ? 0 : rotationX > 0.25 ? 1 : -1;
 }
 
+void drawBorders(int choose) {
+  
+  //top
+  if (choose == 1)
+  {
+    fill(0);
+    rect(9*width/10,0, width, height);
+    fill(0);
+    rect(0,9*height/10, width, height);
+    fill(0);
+    rect(0,0, width/10, height);
+    fill(50, 250, 70);
+    rect(0,0, width, height/10);
+  }
+  //right
+    if (choose == 2)
+  {
+    fill(0);
+    rect(0,0, width, height/10);
+    fill(0);
+    rect(0,9*height/10, width, height);
+    fill(0);
+    rect(0,0, width/10, height);
+    fill(50, 250, 70);
+    rect(9*width/10,0, width, height);
+  }
+  //bottom
+    if (choose == 3)
+  {
+    fill(0);
+    rect(0,0, width, height/10);
+    fill(0);
+    rect(9*width/10,0, width, height);
+    fill(0);
+    rect(0,0, width/10, height);
+    fill(50, 250, 70);
+    rect(0,9*height/10, width, height);
+  }
+  //left
+    if (choose == 4)
+  {
+    fill(0);
+    rect(0,0, width, height/10);
+    fill(0);
+    rect(9*width/10,0, width, height);
+    fill(0);
+    rect(0,9*height/10, width, height);
+    fill(50, 250, 70);
+    rect(0,0, width/10, height);
+  }  
+}
 
 void drawArrows(int choose)
 {
