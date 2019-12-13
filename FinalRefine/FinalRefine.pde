@@ -22,7 +22,7 @@ float gSD;
 float bSD;
 
 String[] colors = {"Red", "Green"}; // COLOR NAMES CORRESPOND TO RGB VALUES ON NEXT LINE (whites, grays, and yellow seem to be BAD)
-int[][] rgbs = { {210,0,0}, {0,137,13} }; // put values here based on rgb camera reading in DEBUGGING MODE
+int[][] rgbs = { {223,100,80}, {49,140,75} }; // put values here based on rgb camera reading in DEBUGGING MODE
 ArrayList history = new ArrayList<Integer>();
 String confirmedColor = "None";
 String currentColor = "";
@@ -57,7 +57,8 @@ boolean firstStageCorrect = false;
 void setup() {
   
   //tilting setup (testing was meh on my phone so tbd how to finalize set up -HL)
-  fullScreen();
+  size(2280,1080);
+  //fullScreen();
   new KetaiSensor(this).start();
   textAlign(CENTER, CENTER);
   textSize(50);
@@ -70,6 +71,7 @@ void setup() {
   textFont(createFont("Arial", 96));
   cameraScale = 3;
   cam = new KetaiCamera(this, width/cameraScale, height/cameraScale, 24);
+  println("made camera---------");
   //image(cam,0,0);
   rectMode(CENTER);
   textFont(createFont("Arial", 40)); //sets the font to Arial size 20
@@ -87,14 +89,15 @@ void setup() {
   }
   
   cam.start();
+  println("started camera---------");
 
 }
 
-void stop() {
-  println("EXITING APP-- closing camera");
-  if (cam != null)
-    cam.stop();
-}
+//void stop() {
+//  println("EXITING APP-- closing camera");
+//  if (cam != null)
+//    cam.stop();
+//}
 
 void draw() {
   int index = trialIndex;
@@ -127,11 +130,11 @@ void draw() {
   
   if (chooseStage == 4) // PUT THE UI FOR CHOOSE 4 STAGE HERE 
   {
-    if (light <= proxSensorThreshold) tiltingMode = true;
-    else {
-      //resetConfirmed(); //depending on testing, may be a good idea to reset when finger is removed from proximity sensor
-      tiltingMode = false;
-    }
+    //if (light <= proxSensorThreshold) tiltingMode = true;
+    //else {
+    //  //resetConfirmed(); //depending on testing, may be a good idea to reset when finger is removed from proximity sensor
+    //  tiltingMode = false;
+    //}
     tilting(targets.get(index).target+1);
     
     textFont(font, 100);
@@ -191,16 +194,17 @@ void checkNextTrial4()
   {
     firstStageCorrect = true;
     //trialIndex++;
-    println("CORRECT DIRECTION");
+    //println("CORRECT DIRECTION");
   }
   else
   {
     firstStageCorrect = false;
 
-    println("IN-CORRECT DIRECTION");
+    //println("IN-CORRECT DIRECTION");
   }
   
   chooseStage = 2;
+  //cam.start();
 }
 
 void checkNextTrial2()
@@ -209,7 +213,7 @@ void checkNextTrial2()
   {
     secondStageCorrect = true;
     //trialIndex++;
-    println("CORRECT COLOR");
+    //println("CORRECT COLOR");
   }
   else
   {
@@ -217,7 +221,7 @@ void checkNextTrial2()
     //if (trialIndex >0)
     //  trialIndex--;
     // make sure to go back to start of trial
-    println("IN-CORRECT COLOR");
+    //println("IN-CORRECT COLOR");
   }
   if (firstStageCorrect && secondStageCorrect)
   {
@@ -286,13 +290,13 @@ void tilting(int choose){
        {
          if (x_position < 0)
          {
-           print("LEFT");
+           //print("LEFT");
            selected = "LEFT";
            confirmedDirection = 4;
          }
          else
          {
-           print("RIGHT");
+           //print("RIGHT");
            selected = "RIGHT";
            confirmedDirection = 2;
          }         
@@ -304,13 +308,13 @@ void tilting(int choose){
        {
          if (y_position < 0)
          {
-           print("TOP"); //confusion here about which is top or bottom
+           //print("TOP"); //confusion here about which is top or bottom
            selected = "BOTTOM";
            confirmedDirection = 3; //3 is assuming bottom. May need to switch with else case below
          }
          else
          {
-           print("BOTTOM");
+           //print("BOTTOM");
            selected = "TOP";
            confirmedDirection = 1; //1 is assuming top
          }         
@@ -333,10 +337,10 @@ void onGyroscopeEvent(float x, float y, float z) {
   rotationZ = z;
 }
 
-void onLightEvent(float v) //this just updates the light value
-{
-  light = v; //update global variable
-}
+//void onLightEvent(float v) //this just updates the light value
+//{
+//  light = v; //update global variable
+//}
 
 /**
  * returns 0 if left, 
@@ -361,7 +365,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(0);
-    rect(0,0, width/10, height);
+    rect(0,0, height/10, height);
     fill(50, 250, 70);
     rect(0,0, width, height/10);
   }
@@ -373,7 +377,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(0);
-    rect(0,0, width/10, height);
+    rect(0,0, height/10, height);
     fill(50, 250, 70);
     rect(width-height/10,0, width, height);
   }
@@ -385,7 +389,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(width-height/10,0, width, height);
     fill(0);
-    rect(0,0, width/10, height);
+    rect(0,0, height/10, height);
     fill(50, 250, 70);
     rect(0,9*height/10, width, height);
   }
@@ -399,7 +403,7 @@ void drawBorders(int choose) {
     fill(0);
     rect(0,9*height/10, width, height);
     fill(50, 250, 70);
-    rect(0,0, width/10, height);
+    rect(0,0, height/10, height);
   }  
 }
 
@@ -477,18 +481,26 @@ void arrow(final int aHeadX, final int aHeadY, final int aSize, final float aAng
 
 void drawColor2UI()
 {
-  float tileSize = height*0.55;
+  float tileSize = height*0.65;
   float centerX = width*.65;
   float centerY = height*.5+tileSize/2;
   int targetOption = targets.get(trialIndex).action;
+  textAlign(CENTER);
+  fill(200);
   //First tile
-  fill(color(rgbs[0][0], rgbs[0][1], rgbs[0][2]));
+  if (targetOption == 0)
+    fill(color(rgbs[0][0], rgbs[0][1], rgbs[0][2]));
   rect(centerX-tileSize, centerY-tileSize, tileSize, tileSize);
+  text(colors[0],centerX-tileSize/2, centerY+tileSize/6);
   
+  fill(200);
   //Second tile
-  fill(color(rgbs[1][0], rgbs[1][1], rgbs[1][2]));
+  if (targetOption == 1)
+    fill(color(rgbs[1][0], rgbs[1][1], rgbs[1][2]));
   rect(centerX, centerY-tileSize, tileSize, tileSize);
+  text(colors[1],centerX+tileSize/2, centerY+tileSize/6);
   
+  textAlign(LEFT);
   ////Third tile
   //fill(color(rgbs[2][0], rgbs[2][1], rgbs[2][2]));
   //rect(centerX-tileSize, centerY, tileSize, tileSize);
@@ -497,10 +509,15 @@ void drawColor2UI()
   //fill(color(rgbs[3][0], rgbs[3][1], rgbs[3][2]));
   //rect(centerX, centerY, tileSize, tileSize);
   
-  if (targetOption == 0)
-    drawTargetCircle(centerX-tileSize/2, centerY-tileSize/2, tileSize);
-  else if (targetOption == 1)
-    drawTargetCircle(centerX+tileSize/2, centerY-tileSize/2, tileSize);
+  
+  //DOTS
+  //if (targetOption == 0)
+  //  drawTargetCircle(centerX-tileSize/2, centerY-tileSize/2, tileSize);
+  //else if (targetOption == 1)
+  //  drawTargetCircle(centerX+tileSize/2, centerY-tileSize/2, tileSize);
+  
+  
+  
   //else if (targetOption == 2)
   //  drawTargetCircle(centerX-tileSize/2, centerY+tileSize/2, tileSize);
   //else if (targetOption == 3)
