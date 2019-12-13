@@ -90,6 +90,12 @@ void setup() {
 
 }
 
+void stop() {
+  println("EXITING APP-- closing camera");
+  if (cam != null)
+    cam.stop();
+}
+
 void draw() {
   int index = trialIndex;
   background(255);
@@ -214,12 +220,14 @@ void checkNextTrial2()
   if (firstStageCorrect && secondStageCorrect)
   {
     trialIndex++;
-  } else {
-    if (trialIndex > 0) trialIndex--;
+  } 
+  else  //penalize them by going back one
+  {
+    if (trialIndex > 0) trialIndex--; // (((shouldnt't go back????, just restart to choose 4 of that trial right?)))
   }
   
   resetConfirmed();
-  chooseStage = 4;
+  chooseStage = 4; // no matter what go to choose 4, but not advance trial if one or both wrong
 }
 
 void resetConfirmed()
@@ -242,7 +250,8 @@ void tilting(int choose){
     
   drawArrows(choose);
 
-  if (tiltingMode) {
+  //if (tiltingMode) { // determines using prox
+   if (true) {
     int x_value = getXOrientation();
     int y_value = getYOrientation();
     
@@ -305,12 +314,12 @@ void tilting(int choose){
      }
   
     
-    fill(51);
-    text("Gyroscope: \n" + 
-      "x: " + nfp(rotationX, 1, 3) + "\n" +
-      "y: " + nfp(rotationY, 1, 3) + "\n" +
-      "z: " + nfp(rotationZ, 1, 3) + "\n" +
-      selected, 0, 0, width, height);    
+    //fill(51);
+    //text("Gyroscope: \n" + 
+    //  "x: " + nfp(rotationX, 1, 3) + "\n" +
+    //  "y: " + nfp(rotationY, 1, 3) + "\n" +
+    //  "z: " + nfp(rotationZ, 1, 3) + "\n" +
+    //  selected, 0, 0, width, height);    
   }
 }
 
@@ -584,38 +593,39 @@ float sdColor(String col, color[] pix, float m)
     }
   return sumOfDiff / (n - 1);
 }
+
 // ===================================================
 
 void onCameraPreviewEvent() {
   cam.read();
 }
 
-void checkNext4(boolean correct) // MODIFY THIS TO CHECK IF BOTH STAGES WERE CORRECT AFTER CHOOSE 2
-{
-  firstStageCorrect = correct;
-  chooseStage = 2;
-}
+//void checkNext4(boolean correct) // MODIFY THIS TO CHECK IF BOTH STAGES WERE CORRECT AFTER CHOOSE 2
+//{
+//  firstStageCorrect = correct;
+//  chooseStage = 2;
+//}
 
 void mousePressed() {
   //if (confirmedColor != "None")
   //{
   //  resetConfirmed();
   //}
-  int quad = mouseX / (width/4);
-  if (chooseStage  == 4)
-  {
-    println("Q",quad);
-    if (targets.get(trialIndex).target == quad)
-    {
-       checkNext4(true);
-       println("CORRECT 4 option");
-    }
-    else
-    {
-      checkNext4(false);
-      println("IN-CORRECT 4 option");
-    }
-  }
+  //int quad = mouseX / (width/4);
+  //if (chooseStage  == 4)
+  //{
+  //  println("Q",quad);
+  //  if (targets.get(trialIndex).target == quad)
+  //  {
+  //     checkNext4(true);
+  //     println("CORRECT 4 option");
+  //  }
+  //  else
+  //  {
+  //    checkNext4(false);
+  //    println("IN-CORRECT 4 option");
+  //  }
+  //}
 
   
   //if (! cam.isFlashEnabled())
